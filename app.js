@@ -21,8 +21,8 @@ const campgroundsRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo');
 
-//const dbUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/yelp-camp';
-const dbUrl = 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/yelp-camp';
+//const dbUrl = 'mongodb://localhost:27017/yelp-camp';
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -116,7 +116,7 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    //secure: true, // uncomment if app for production
+    secure: true, // uncomment if app for production
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7
   }
@@ -159,6 +159,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render('error', { err })
 })
 
-app.listen(4000, () => {
-  console.log("Serving on port 4000")
+app.listen(process.env.PORT || 5000, () => {
+  console.log(`YelpCamp Running!`)
 })
