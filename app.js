@@ -141,7 +141,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/yelpcamp/', userRoutes);
+app.use('/yelpcamp', userRoutes);
 app.use('/yelpcamp/campgrounds', campgroundsRoutes);
 app.use('/yelpcamp/campgrounds/:id/reviews', reviewsRoutes);
 
